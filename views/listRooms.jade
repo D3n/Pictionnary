@@ -1,0 +1,39 @@
+extends layout
+block content
+    .container
+        .row
+            .col-md-offset-2.col-md-8
+                h2 Liste des salons
+                .row
+                    div#newRoom.col-md-offset-3.col-md-7
+                        form#formNewRoom(action='#', method='')
+                            div#divNameRoom.form-group.col-md-8
+                                input#nameRoom(type='text', placeholder='Nom du salon',maxlength='25', required).form-control
+
+                            div.form-group
+                                button#buttonCreateRoom.btn.btn-large.btn-success
+                                    span.glyphicon.glyphicon-plus-sign
+                                    |  Créer le salon
+
+                br
+                div#divErrors.text-center
+
+                div#divListRooms
+                    table#tableRooms(style='display:none').table.table-condensed.table-hover
+                        thead
+                            th(width='60%') Nom
+                            th(width='20%').text-center Joueurs
+                            th(width='20%')
+                        tbody#tbody
+                          
+
+                    div#divNoRoom(style='display:none').alert.alert-danger
+                        b Désolé...
+                        |   Il n'y aucun salon pour jouer actuellement.
+
+
+
+        include footer
+
+    script(type='text/javascript',src='/socket.io/socket.io.js')
+    script(type='text/javascript', src='/js/listRooms_client.js')

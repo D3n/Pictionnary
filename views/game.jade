@@ -1,0 +1,113 @@
+extends layout
+
+block content
+    .container
+        .row
+            .col-md-8
+                h3#titleRoom Salon :
+                .text-center
+                    span
+                        a.btn.btn-sm.btn-warning(href='/')
+                            span.glyphicon.glyphicon-arrow-left
+                            |   Quitter le salon
+                        | &nbsp;
+                    span#divBelowScores.col-md-offset-1
+                        button#ready.btn.btn-sm.btn-primary
+                            span.glyphicon.glyphicon-check
+                            |   Je suis prêt à jouer !
+
+                br
+                div(id='sketch')
+                    canvas(id='paint', height='400px', width='700px')
+
+                div#divChooseWord(style='display:none')
+                    br
+                    form(id='formWord').form-inline
+                        div.col-md-6
+                            input#inputWord(type='text', placeholder='Qu\'allez-vous dessiner ?', required).form-control
+                        button.btn.btn-sm.btn-primary(type='submit') Envoyer
+
+                div(id='divTools', style='display:none;').col-md-offset-1
+                    div#divType.col-md-2.text-center.radio
+                        p: u: b Type
+                        input(type='radio',name='type', id='pencil', checked)
+                        |   Crayon
+                        br
+                        input(type='radio',name='type', id='eraser')
+                        |   Gomme
+
+                    div#divColors.col-md-5.text-center
+                        p: u: b Couleurs du pinceau
+                        ul#colors
+                            li
+                                a.active(href='#', data-color='#000000') Noir
+                            li
+                                a(href='#',id='toto', data-color='#6E6E6E') Gris
+                            li
+                                a(href='#', data-color='#ff0000') Rouge
+                            li
+                                a(href='#', data-color='brown') Marron
+                            li
+                                a(href='#', data-color='orange') Orange
+                            li
+                                a(href='#', data-color='yellow') Jaune
+                            br
+                            li
+                                a(href='#', data-color='green') Vert
+                            li
+                                a(href='#', data-color='cyan') Cyan
+                            li
+                                a(href='#', data-color='blue') Bleu
+                            li
+                                a(href='#', data-color='indigo') Indigo
+                            li
+                                a(href='#', data-color='Violet') Violet
+                            li
+                                a(href='#', data-color='pink') Rose
+
+                    div#divSize.col-md-3.text-center.radio
+                        p: u: b Taille du pinceau
+                        input(type='radio', value='5', name='size', checked)
+                        |   Petit
+                        br
+                        input(type='radio', value='10', name='size')
+                        |   Moyen
+                        br
+                        input(type='radio', value='15', name='size')
+                        |   Large
+                    div#divClear.col-md-1
+                        button(type='button', id='clear', title='Effacer le dessin').btn.btn-danger.btn-lg
+                            span.glyphicon.glyphicon-trash
+
+
+            .col-md-4
+                .row
+                section(id='timer')
+                    img#horloge(src='/images/horloge.png')
+                    div(id='divTimer').text-center
+                        span#hour.timer 0
+                        |  h&nbsp;
+                        span#minutes.timer 0
+                        |  m&nbsp;
+                        span#seconds.timer 0
+                        |  s
+                section(id='scores')
+                    h3.text-center Scores
+                    div#divScores
+
+
+
+                section(id='chat')
+                    h3.text-center Chat
+                    div(id='messages').messages
+
+                    form(id='formChat').form-inline
+                        div.col-md-9
+                            input(type='text', placeholder='Message...',id='message',required='').form-control
+                        button.btn.btn-sm.btn-primary(type='submit') Envoyer
+
+        include footer
+
+    script(type='text/javascript',src='/socket.io/socket.io.js')
+    script(type='text/javascript', src='/js/chat_client.js')
+    script(type='text/javascript', src='/js/sketch_client.js')

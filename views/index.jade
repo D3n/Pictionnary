@@ -1,0 +1,44 @@
+extends layout
+
+block content
+    .container
+        .row
+            .col-md-3
+                h2 Se connecter
+                if optionsLogin
+                    div.alert.alert-danger
+                        each error in optionsLogin.errors
+                            =error
+                form.form-signin(id='form-login', method='post', action='/login')
+                    .form-group
+                        input.input-block-level(type='text', placeholder='Pseudo',name='loginPseudo',required='',maxlength='20').form-control
+                    .form-group
+                        input.input-block-level(type='password', placeholder='Mot de passe',name='loginPassword',required='').form-control
+
+                    button.btn.btn-large.btn-primary(type='submit') Login
+
+            .col-md-6
+                img#howToPlay(src='/images/how-to-play-pictionary.jpg')
+
+            .col-md-3
+                h2 S'incrire
+                if optionsRegister
+                    div.alert.alert-danger
+                        each error in optionsRegister.errors
+                            =error
+                form(id='form-signin', method='post', action='/addUser')
+                    .form-group
+                        input.input-block-level(type='text', placeholder='Pseudo',maxlength='20',name='signinPseudo',required='').form-control
+                    .form-group
+                        input.input-block-level(type='password', placeholder='Mot de passe', name='signinPassword',required='').form-control.required
+                    .form-group
+                        input.input-block-level(type='password', placeholder='Confirmation', name='signinConfirmation',required='').form-control.required
+                    .form-group
+                        select.form-control(name='signinLang')
+                            option Français
+                            option Anglais
+                    button.btn.btn-large.btn-primary(type='submit') Sign-in
+
+
+
+        include footer

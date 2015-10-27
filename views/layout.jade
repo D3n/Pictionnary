@@ -1,0 +1,58 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title SupGame - Pictionnary Online
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='pictionnary')
+    meta(name='author', content='Mludek Denis')
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/style.css')
+  body
+    .container
+        //
+             Static navbar
+        .navbar.navbar-default(role='navigation')
+            .navbar-header
+                button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.navbar-brand(href='/') SupGame - Pictionnary Online
+            .navbar-collapse.collapse
+                ul.nav.navbar-nav
+                    if usr
+                        li
+                            a(href='/listRooms') Liste des salons
+                        li
+                            a(href='#') Classement &nbsp;
+                                span.label.label-info SOON
+
+                    else
+                        li
+                            a(href='/') Accueil
+
+                if usr
+                    ul.nav.navbar-nav.navbar-right
+                        li.dropdown
+                            a(href='#', data-toggle='dropdown').dropdown-toggle
+                                span.glyphicon.glyphicon-user
+                                b &nbsp; #{usr.name} &nbsp;
+                                b.caret
+                            ul.dropdown-menu
+                                li
+                                    a(href='#') Mon profil &nbsp;
+                                        span.label.label-info SOON
+                                li
+                                    a(href='/logout') Se déconnecter
+
+
+
+            //
+              /.nav-collapse
+
+
+    block content
+
+    include partials/scripts
