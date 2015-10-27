@@ -4,16 +4,10 @@
 
 var mongoose = require ('mongoose');
 
-/*
-var db = mongoose.connection;
-db.on('error', console.error); */
-
 var uristring =
     process.env.MONGOLAB_URI ||
         process.env.MONGOHQ_URL ||
         'mongodb://localhost/pictionary';
-
-//mongoose.connect('localhost','pictionnary');
 
 mongoose.connect(uristring, function (err, res) {
     if (err) {
